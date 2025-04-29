@@ -1,0 +1,19 @@
+sudo groupadd managers
+sudo adduser alice
+
+sudo usermod -aG manager lice
+
+echo"managers only">manager.txt
+
+sudo chown: managers manager.txt
+
+give permission to managera : sudo chmod 770 manager.txt
+
+set directory permissions : sudo chown user: managers /home/user
+
+sudo chown 750 /home/user
+
+restart wsl 
+su- alice
+groups
+cat /home/user/manager.txt

@@ -1,0 +1,13 @@
+echo"top secret">secret.txt
+chmod 600 secret.txt
+sudo chown root:root secret.txt
+
+access with root
+
+su root
+change password: sudo passwd root
+
+in root: cat secret.txt
+
+su other user
+cat secret.txt

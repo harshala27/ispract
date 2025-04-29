@@ -1,0 +1,34 @@
+# Step 1: Create and navigate to a directory
+mkdir key && cd key
+
+# Step 2: Generate a private key (RSA 2048) with AES-256 encryption
+openssl genpkey -algorithm RSA -out private.key -aes256
+
+# Step 3: Generate the public key from the private key
+openssl rsa -pubout -in private.key -out public.key
+
+# Step 4: Create a Certificate Signing Request (CSR)
+openssl req -new -key private.key -out user.csr
+
+# Step 5: Create a self-signed certificate using the private key and CSR
+openssl req -x509 -key private.key -in user.csr -out user_cert.crt -days 365
+
+# Step 6: Generate the Certificate Authority (CA) private key (AES-256 encrypted)
+openssl genpkey -algorithm RSA -out ca.key -aes256
+
+# Step 7: Create the CA self-signed certificate
+openssl req -x509 -key ca.key -out ca.crt -days 3650
+
+# Step 8: Sign the user CSR with the CA key to generate a signed certificate
+openssl x509 -req -in user.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out user_signed_cert.crt -days 365
+
+# (Optional) Step 9: Verify the signed certificate
+openssl verify -CAfile ca.crt user_signed_cert.crt
+
+
+
+
+test
+
+openssl x509 -in user_signed_cert.crt -noout -text
+

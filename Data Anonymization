@@ -1,0 +1,41 @@
+sudo apt update && sudo apt upgrade -y
+python3 -m venv anonymization_env
+source anonymization_env/bin/activate
+pip install cryptography pandas faker
+
+
+nano mask.py
+
+
+import pandas as pd
+
+# Data containing SSNs
+data = {"SSN": ["123-45-6789", "987-65-4321", "555-44-3333"]}
+df = pd.DataFrame(data)
+
+# Masking SSN (showing only the last 4 digits)
+df["Masked_SSN"] = df["SSN"].str.replace(r"\d{3}-\d{2}", "***-**", regex=True)
+
+# Display the masked data
+print(df)
+
+
+
+python3 mask.py
+
+
+nano generate_fake_data.py
+
+
+from faker import Faker
+
+# Create a Faker instance
+fake = Faker()
+
+# Generate and print 5 fake records
+for _ in range(5):
+    print(fake.name(), "-", fake.email(), "-", fake.phone_number())
+
+
+python3 generate_fake_data.py
+

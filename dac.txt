@@ -1,0 +1,11 @@
+mkdir dac_demo && cd dac_demo
+
+create a file: touch confidential.txt
+protect: chmod 600 confidential.txt
+
+add new user: sudo adduser alice
+
+make newuser owner: sudo chown alice:alice confidential.txt
+
+su- alice
+cat confidential.txt

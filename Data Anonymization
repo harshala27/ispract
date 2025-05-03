@@ -7,6 +7,7 @@ pip install cryptography pandas faker
 nano mask.py
 
 
+######
 import pandas as pd
 
 # Data containing SSNs
@@ -19,14 +20,14 @@ df["Masked_SSN"] = df["SSN"].str.replace(r"\d{3}-\d{2}", "***-**", regex=True)
 # Display the masked data
 print(df)
 
-
+#########
 
 python3 mask.py
 
 
 nano generate_fake_data.py
 
-
+###############
 from faker import Faker
 
 # Create a Faker instance
@@ -36,6 +37,6 @@ fake = Faker()
 for _ in range(5):
     print(fake.name(), "-", fake.email(), "-", fake.phone_number())
 
-
+################
 python3 generate_fake_data.py
 

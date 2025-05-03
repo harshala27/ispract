@@ -2,4 +2,6 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install nmap -y
 
 ip a
+sudo apt install net-tools
+ifconfig
 nmap -sV -p- "your ip yaha khud ka ip dalo"

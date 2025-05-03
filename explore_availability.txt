@@ -1,5 +1,5 @@
-two terminals
-apache bench mark : sudo apt update 
+NOTE "two terminals are needed"
+"apache bench mark" : sudo apt update 
 sudo apt install apache2-utils
 
 term1:- python3 -m http.server 8080

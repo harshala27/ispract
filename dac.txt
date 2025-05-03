@@ -1,11 +1,22 @@
+# Step 1: Create a directory and move into it
 mkdir dac_demo && cd dac_demo
 
-create a file: touch confidential.txt
-protect: chmod 600 confidential.txt
+# Step 2: Create a file
+touch confidential.txt
 
-add new user: sudo adduser alice
+# Step 3: Restrict access (owner read/write only)
+chmod 600 confidential.txt
 
-make newuser owner: sudo chown alice:alice confidential.txt
+# Step 4: Add a new user named alice
+sudo adduser alice
+# Follow the prompts to set alice’s password and info
 
-su- alice
-cat confidential.txt
+# Step 5: Change ownership of the file to alice
+sudo chown alice:alice confidential.txt
+
+# Step 6: Switch to user alice
+su - alice
+
+# Step 7: Try reading the file
+cat /home/your_original_user/dac_demo/confidential.txt
+# Replace `your_original_user` with your actual username

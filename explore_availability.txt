@@ -7,8 +7,9 @@ term1:- python3 -m http.server 8080
 term2:- ab -n 1000 -c 100 http://localhost:8080
 
 open task manager ctrl+shift+esc
+"to check the cpu utilisation fluctuations"
 
-to download python
+"to download python if not downloaded"
 sudo apt update
 sudo apt upgrade -y
 sudo apt install python3 -y

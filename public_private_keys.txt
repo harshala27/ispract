@@ -3,32 +3,79 @@ mkdir key && cd key
 
 # Step 2: Generate a private key (RSA 2048) with AES-256 encryption
 openssl genpkey -algorithm RSA -out private.key -aes256
+# Example input:
+# Enter PEM pass phrase: MySecurePassphrase123
+# Verifying - Enter PEM pass phrase: MySecurePassphrase123
 
 # Step 3: Generate the public key from the private key
 openssl rsa -pubout -in private.key -out public.key
+# Example input:
+# Enter pass phrase for private.key: MySecurePassphrase123
 
 # Step 4: Create a Certificate Signing Request (CSR)
 openssl req -new -key private.key -out user.csr
+# Example inputs:
+# Enter pass phrase for private.key: MySecurePassphrase123
+# Country Name (2 letter code) [AU]: US
+# State or Province Name (full name) [Some-State]: California
+# Locality Name (eg, city) []: San Francisco
+# Organization Name (eg, company) [Internet Widgits Pty Ltd]: MyCompany Inc
+# Organizational Unit Name (eg, section) []: IT Department
+# Common Name (e.g. server FQDN or YOUR name) []: alice.mycompany.com
+# Email Address []: alice@mycompany.com
 
 # Step 5: Create a self-signed certificate using the private key and CSR
 openssl req -x509 -key private.key -in user.csr -out user_cert.crt -days 365
+# Example inputs:
+# Enter pass phrase for private.key: MySecurePassphrase123
+# Country Name (2 letter code) [US]: US
+# State or Province Name (full name) [California]: California
+# Locality Name (eg, city) []: San Francisco
+# Organization Name (eg, company) []: MyCompany Inc
+# Organizational Unit Name (eg, section) []: IT Department
+# Common Name []: alice.mycompany.com
+# Email Address []: alice@mycompany.com
 
 # Step 6: Generate the Certificate Authority (CA) private key (AES-256 encrypted)
 openssl genpkey -algorithm RSA -out ca.key -aes256
+# Example inputs:
+# Enter PEM pass phrase: MyCAPassword123
+# Verifying - Enter PEM pass phrase: MyCAPassword123
 
 # Step 7: Create the CA self-signed certificate
 openssl req -x509 -key ca.key -out ca.crt -days 3650
+# Example inputs:
+# Enter pass phrase for ca.key: MyCAPassword123
+# Country Name (2 letter code) []: US
+# State or Province Name []: California
+# Locality Name []: San Francisco
+# Organization Name []: MyCompany CA
+# Organizational Unit Name []: Root CA
+# Common Name []: MyCompany Root CA
+# Email Address []: ca@mycompany.com
 
 # Step 8: Sign the user CSR with the CA key to generate a signed certificate
 openssl x509 -req -in user.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out user_signed_cert.crt -days 365
+# Example input:
+# Enter pass phrase for ca.key: MyCAPassword123
 
 # (Optional) Step 9: Verify the signed certificate
 openssl verify -CAfile ca.crt user_signed_cert.crt
+# Example output:
+# user_signed_cert.crt: OK
 
-
-
-
-test
-
+# Step 10: Inspect the signed certificate
 openssl x509 -in user_signed_cert.crt -noout -text
-
+# Example output:
+# Certificate:
+#     Data:
+#         Version: 3 (0x2)
+#         Serial Number:
+#             0d:3d:61:69:28:da:0b:28:fb:8e:b2:4a:c3:f9:b7:12
+#         Signature Algorithm: sha256WithRSAEncryption
+#         Issuer: CN = MyCompany Root CA
+#         Validity
+#             Not Before: May  3 00:00:00 2025 GMT
+#             Not After : May  3 23:59:59 2026 GMT
+#         Subject: CN = alice.mycompany.com
+#         ...

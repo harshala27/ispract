@@ -3,7 +3,7 @@ sudo apt install python3 python3-pip -y
 pip3 install cryptography pandas faker
 
 nano aes_key.py
-from cryptography.fernet import Fernet
+{from cryptography.fernet import Fernet
 
 # Generate AES key
 key = Fernet.generate_key()
@@ -12,11 +12,14 @@ key = Fernet.generate_key()
 with open("aes_key.key", "wb") as key_file:
     key_file.write(key)
     print(f"Generated AES Key: {key.decode()}")
+}
 
 python3 aes_key.py
 
 nano aes_encrypt.py
-:-from cryptography.fernet import Fernet
+:-
+{
+from cryptography.fernet import Fernet
 
 # Load AES key
 key = open("aes_key.key", "rb").read()
@@ -28,7 +31,7 @@ message = "Confidential Data: Do not share!"
 # Encrypt the message
 encrypted_message = cipher.encrypt(message.encode())
 print(f"Encrypted Message: {encrypted_message.decode()}")
-
+}
 
 python3 aes_encrypt.py
 
@@ -37,6 +40,7 @@ nano aes_decrypt.py
 
 
 
+{
 from cryptography.fernet import Fernet
 
 # Load AES key
@@ -49,6 +53,7 @@ encrypted_message = b'ENCRYPTED_MESSAGE_HERE'
 # Decrypt the message
 decrypted_message = cipher.decrypt(encrypted_message).decode()
 print(f"Decrypted Message: {decrypted_message}")
+}
 
 python3 aes_decrypt.py
 

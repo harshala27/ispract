@@ -1,7 +1,7 @@
 1.To explore the Confidentiality identify potential security violations through practical examples and system analysis.
 create file :echo "confidential" > file.txt
 chmod 600 file.txt
-sudo su- new
+sudo su - new
 "set the user password"
 
 

@@ -1,13 +1,20 @@
-echo"top secret">secret.txt
+# Create a file with sensitive content
+echo "top secret" > secret.txt
+
+# Set permissions: only owner (root) can read/write
 chmod 600 secret.txt
+
+# Change file ownership to root
 sudo chown root:root secret.txt
 
-access with root
+# Set root password (only once)
+sudo passwd root
 
-su root
-change password: sudo passwd root
+# Switch to root user
+su - root
 
-in root: cat secret.txt
+# As root, access the file
+cat /home/yourusername/secret.txt
 
-su other user
-cat secret.txt
+su - otheruser
+cat /home/yourusername/secret.txt

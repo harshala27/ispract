@@ -2,4 +2,4 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install nmap -y
 
 ip a
-nmap -sV -p- your ip
+nmap -sV -p- "your ip yaha khud ka ip dalo"

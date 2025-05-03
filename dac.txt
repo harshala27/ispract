@@ -2,7 +2,7 @@
 mkdir dac_demo && cd dac_demo
 
 # Step 2: Create a file
-touch confidential.txt
+echo "confidential" > confidential.txt
 
 # Step 3: Restrict access (owner read/write only)
 chmod 600 confidential.txt

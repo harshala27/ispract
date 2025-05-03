@@ -29,3 +29,7 @@ wsl --shutdown      # restart WSL
 su - alice           # note the space after “su”
 groups               # should list “managers”
 cat /home/youruser/manager.txt   # should succeed
+
+sudo adduser bob
+su - bob
+cat /home/youruser/manager.txt

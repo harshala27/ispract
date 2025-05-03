@@ -2,6 +2,6 @@ nano logfile.txt
 
 chech hash: sha256 logfile.txt
 
-make changes in log file nano logfile.txt
+make changes in log file:  nano logfile.txt
 
 check hash : sha256 logfile.txt

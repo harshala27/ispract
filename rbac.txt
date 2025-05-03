@@ -1,19 +1,31 @@
+# 1. Create the group (note: plural “managers”)
 sudo groupadd managers
+
+# 2. Create the user “alice”
 sudo adduser alice
+# → follow prompts
 
-sudo usermod -aG manager lice
+# 3. Add alice to the “managers” group (group name plural!)
+sudo usermod -aG managers alice
 
-echo"managers only">manager.txt
+# 4. Create the file, writing your message into it
+echo "managers only" > manager.txt
 
-sudo chown: managers manager.txt
+# 5. Make the file owned by the managers group
+sudo chown :managers manager.txt
 
-give permission to managera : sudo chmod 770 manager.txt
+# 6. Give owner & group full rights; no rights for others
+sudo chmod 770 manager.txt
 
-set directory permissions : sudo chown user: managers /home/user
+# 7. Set the directory’s group ownership and perms so only you + managers can access
+#    (replace “youruser” with your actual username)
+sudo chown youruser:managers /home/youruser
+sudo chmod 750      /home/youruser
 
-sudo chown 750 /home/user
+# 8. (Re-login for group changes to take effect)
+wsl --shutdown      # restart WSL
 
-restart wsl 
-su- alice
-groups
-cat /home/user/manager.txt
+
+su - alice           # note the space after “su”
+groups               # should list “managers”
+cat /home/youruser/manager.txt   # should succeed

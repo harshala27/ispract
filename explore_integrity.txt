@@ -1,7 +1,10 @@
 nano logfile.txt
+"a screen will open enter anything "
+then to save press control o then enter then control x
 
-chech hash: sha256 logfile.txt
+"chech hash": sha256sum logfile.txt
 
 make changes in log file:  nano logfile.txt
+then to save press control o then enter then control x
 
-check hash : sha256 logfile.txt
+check hash : sha256sum logfile.txt

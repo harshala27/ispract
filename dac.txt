@@ -25,3 +25,27 @@ su - alice
 # Step 7: Try reading the file
 cat /home/your_original_user/dac_demo/confidential.txt
 # Replace `your_original_user` with your actual username
+
+
+
+
+/////////////////////////
+ANOTHER WAYYYYYYYYYYYYYYYYYYYYY
+# Step 1: As user 'smruti', create a shared directory
+mkdir /tmp/dac_demo
+cd /tmp/dac_demo
+
+# Step 2: Create a file and add some content
+echo "Confidential content only for Alice" > file.txt
+
+# Step 3: Set permission to allow only the owner to read/write
+chmod 600 file.txt
+
+# Step 4: Change ownership to user 'alice'
+sudo chown alice:alice file.txt
+
+# Step 5: Now switch to user 'alice'
+su - alice
+
+# Step 6: Try to read the file (now as alice)
+cat /tmp/dac_demo/file.txt

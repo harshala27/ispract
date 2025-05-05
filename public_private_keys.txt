@@ -24,8 +24,7 @@ openssl req -new -key private.key -out user.csr
 # Common Name (e.g. server FQDN or YOUR name) []: alice.mycompany.com
 # Email Address []: alice@mycompany.com
 
-# Step 5: Create a self-signed certificate using the private key and CSR
-openssl req -x509 -key private.key -in user.csr -out user_cert.crt -days 365
+# Step 5: openssl x509 -req -in user.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out user_signed_cert.crt -days 365
 # Example inputs:
 # Enter pass phrase for private.key: MySecurePassphrase123
 # Country Name (2 letter code) [US]: US
